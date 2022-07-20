@@ -6,7 +6,6 @@ import Login from './Login';
 import reportWebVitals from './reportWebVitals';
 import CreateEmployee from './CreateEmployee';
 import EmployeeList from './EmployeeList';
-import GetEmployeeById from './GetEmployeeById';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import store from './app/store'
 import { Provider } from 'react-redux'
@@ -22,7 +21,8 @@ root.render(
     <Route path='/' element={<Login/>}/>
     <Route path='/create' element={<CreateEmployee/>}/> 
     <Route path='/employeeList' element={<EmployeeList/>}/>
-    <Route path='/view/:empId' element={<GetEmployeeById/>}/>
+    <Route path='/employee/:empId' element={ <CreateEmployee isdetailsPage={true}/>}/>
+    <Route path='/edit/:empId' element={<CreateEmployee/>}/>
   </Routes>
 
    {/* <CreateEmployee /> */}

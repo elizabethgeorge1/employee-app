@@ -1,12 +1,23 @@
+import { useEffect } from "react";
 import { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import Button from "./components/Button";
 import InputField from "./components/InputField";
 import InputSelect from "./components/InputSelect";
 import LeftNav from "./components/LeftNav";
-import { useGetEmployeeByIdQuery, usePostEmployeeMutation } from "./services/empoyee";
+import {
+  useGetEmployeeByIdQuery,
+  usePostEmployeeMutation,
+  useUpdateEmployeeMutation,
+} from "./services/empoyee";
 import "./styles/createEmpStyle.css";
-const CreateEmployee = () => {
+const CreateEmployee = ({ isdetailsPage }) => {
+  const shouldDisable = isdetailsPage;
+  const [addEmp, { isLoading }] = usePostEmployeeMutation();
+  const { empId } = useParams();
+  const [updatePost, { isLoadings }] = useUpdateEmployeeMutation();
+  const { data, error, isLoadingss } = useGetEmployeeByIdQuery(empId);
+
   const navigate = useNavigate();
   const fields = [
     {
@@ -60,19 +71,31 @@ const CreateEmployee = () => {
     empRole: "",
   });
 
+  useEffect(() => {
+    if (data) {
+      setEmpDetails({
+        empName: data.empName,
+        empId: data.empId,
+        empJoiningDate: data.empJoiningDate,
+        empExperience: data.empExperience,
+        empAddress: data.empAddress,
+        empUpload: data.empUpload,
+        empStatus: data.empStatus,
+        empRole: data.empRole,
+      });
+    }
+  }, [data]);
+
   const update = (key, text) => {
     setEmpDetails({ ...empDetails, [key]: text });
   };
-  // console.log(empDetails);
-  const [addEmp, { isLoading }] = usePostEmployeeMutation();
-  // const {getById}= useGetEmployeeByIdQuery();
-
 
   const handleClick = (e) => {
     e.preventDefault();
     try {
-      addEmp(empDetails).unwrap();
-      // console.log(empDetails, "succ");
+      empId
+        ? updatePost({ id: empId, data: empDetails })
+        : addEmp(empDetails).unwrap();
       setEmpDetails({
         empName: "",
         empId: "",
@@ -83,18 +106,25 @@ const CreateEmployee = () => {
         empStatus: "",
         empRole: "",
       });
-      navigate('/employeeList');
+      navigate("/employeeList");
     } catch (err) {
       console.error("Failed to save the post: ", err);
     }
   };
+  console.log(empDetails, "data");
 
   return (
     <>
       <LeftNav />
       <section className="flex">
         <div className="createEmp">
-          <h1>Create Employee</h1>
+          <h1>
+            {shouldDisable
+              ? "Employee Details"
+              : empId
+              ? "Update Employee"
+              : "Create Employee"}
+          </h1>
         </div>
         <div className="empForm">
           <form>
@@ -105,17 +135,20 @@ const CreateEmployee = () => {
                 type={item.type}
                 placeholder={item.placeholder}
                 onchange={(text) => update(item.key, text)}
+                value={empDetails[item.key]}
+                shouldDisable={shouldDisable}
               />
             ))}
 
             <InputSelect
               label="Status:"
               options={[
-                // {key:'choose',label:"Choose", value:""}
                 { key: "Single", label: "Single" },
                 { key: "Married", label: "Married" },
               ]}
               onchange={(text) => update("empStatus", text)}
+              value={empDetails.empStatus}
+              shouldDisable={shouldDisable}
             />
             <InputSelect
               label="Role:"
@@ -124,19 +157,24 @@ const CreateEmployee = () => {
                 { key: "QA", label: "QA" },
               ]}
               onchange={(text) => update("empRole", text)}
+              value={empDetails.empRole}
+              shouldDisable={shouldDisable}
             />
-            <div>
-              <Button
-                className="create"
-                label="Create"
-                handleClick={handleClick}
-              />
-              <Button
-                className="cancel"
-                label="Cancel"
-                handleClick={() => navigate("/employeeList")}
-              />
-            </div>
+
+            {!shouldDisable && (
+              <div>
+                <Button
+                  className="create"
+                  label={empId ? "Update" : "Create"}
+                  handleClick={handleClick}
+                />
+                <Button
+                  className="cancel"
+                  label="Cancel"
+                  handleClick={() => navigate("/employeeList")}
+                />
+              </div>
+            )}
           </form>
         </div>
       </section>
