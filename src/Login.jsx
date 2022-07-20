@@ -5,6 +5,7 @@ import Button from "./components/Button";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./styles/createEmpStyle.css";
+import "./styles/login.css";
 
 function App() {
   const [userName, setUserName] = useState("");
@@ -13,16 +14,21 @@ function App() {
 
   return (
     <div className="layout">
-      <h2>Home</h2>
-      <div>
-        <InputField label="User Name" onchange={() => {}} />
-        <InputField label="Password" />
+      <div className="illustrationSize"><img src={require("./assets/illustration.png")} alt="illustration"/></div>
+      <div className="loginInput">
+        <div>
+          <img src={require("./assets/kv logo.png")} alt="kv logo" />
+        </div>
+        <div>
+          <InputField label="User Name" onchange={() => {}} />
+          <InputField label="Password" />
+        </div>
+        <Button
+          className="loginButton"
+          label="Login"
+          handleClick={() => navigate("/employeeList")}
+        />
       </div>
-      <Button
-        className="login"
-        label="Login"
-        handleClick={() => navigate("/employeeList")}
-      />
     </div>
   );
 }

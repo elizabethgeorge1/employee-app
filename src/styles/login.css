@@ -1,0 +1,31 @@
+.loginButton {
+  top: 693px;
+  left: 1194px;
+  width: 459px;
+  height: 50px;
+  background: #03aeee 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #b0e6fa;
+  border-radius: 3px;
+  border: none;
+  font-size: 16px;
+}
+
+.layout {
+  background: #ffffff 0% 0% no-repeat padding-box;
+  display: flex;
+}
+.illustrationSize {
+  width: 928px;
+  height: 884px;
+  background: #cfecf7 0% 0% no-repeat padding-box;
+  margin: 32px;
+  display: flex;
+  justify-content: center;
+}
+.loginInput {
+  margin-left: 200px;
+  margin-top: 310px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 50px;
+}

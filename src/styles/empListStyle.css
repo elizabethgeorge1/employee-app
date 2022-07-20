@@ -8,6 +8,7 @@
   border-radius: 10px;
   opacity: 1;
   margin-left: 215px;
+  
 }
 .employeeListHeading {
   height: 32px;
@@ -17,6 +18,7 @@
   color: #000000;
   padding-left: 24px;
   padding-top: 37px;
+  
 }
 .createEmpButton {
   width: 259px;
