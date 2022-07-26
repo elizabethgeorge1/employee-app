@@ -1,14 +1,19 @@
+.kvLogo {
+  background-color: white;
+}
+
 .employeeListHeadingBox {
-  top: 91px;
-  left: 323px;
-  width: 1573px;
   height: 100px;
   background: #fdfdfd 0% 0% no-repeat padding-box;
   box-shadow: 0px 3px 6px #9d9d9d29;
   border-radius: 10px;
   opacity: 1;
-  margin-left: 215px;
-  
+  margin-left: 218px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 22px;
+  margin-right: 45px;
 }
 .employeeListHeading {
   height: 32px;
@@ -17,8 +22,6 @@
   letter-spacing: 0px;
   color: #000000;
   padding-left: 24px;
-  padding-top: 37px;
-  
 }
 .createEmpButton {
   width: 259px;
@@ -29,7 +32,7 @@
   display: flex;
   align-items: center;
   border: none;
-  /* position: relative; */
+  margin-right: 19px;
 }
 .ellipsePng {
   top: 112px;
@@ -42,20 +45,25 @@
 .plusPng {
   background: transparent 0% 0% no-repeat padding-box;
   opacity: 1;
+  padding-top: 5px;
 }
 .empTableHeading {
-  margin-left: 215px;
+  margin-left: 218px;
   background: #eaf9ff 0% 0% no-repeat padding-box;
   border-radius: 5px;
   margin-top: 22px;
   padding: 18px 0px;
   margin-right: 45px;
+  padding-left: 30px;
 }
 
 .flexRow {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+}
+.columnSize {
+  width: 14%;
 }
 .empTableRow {
   background: #ffffff 0% 0% no-repeat padding-box;
@@ -65,10 +73,106 @@
   margin-top: 11px;
   margin-left: 218px;
   margin-right: 45px;
+  padding-left: 30px;
 }
 .blueRound {
   background-color: #03aeee;
   border-radius: 50%;
   width: 23%;
   height: 100%;
+}
+.Active {
+  background-color: #d3f4be;
+  width: 108px;
+  height: 22px;
+  text-align: center;
+  border-radius: 50px;
+}
+.Inactive {
+  background-color: #ffbfbf;
+  width: 108px;
+  height: 22px;
+  text-align: center;
+  border-radius: 50px;
+}
+.Probation {
+  background-color: #f5ecb8;
+  width: 108px;
+  height: 22px;
+  text-align: center;
+  border-radius: 50px;
+}
+.deleteEditIcon {
+  width: 20px;
+  height: 22px;
+  background-color: white;
+  border: none;
+}
+.deleteEditBtn {
+  background-color: white;
+  border: none;
+}
+.btnText {
+  width: 156px;
+  height: 27px;
+  padding-top: 4px;
+  text-align: center;
+  font-size: 15px;
+}
+.dialog {
+  top: 436px;
+  left: 760px;
+  width: 400px;
+  height: 209px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #63667a33;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+}
+.confirmDialogBtn {
+  width: 117px;
+  height: 35px;
+  background: #03aeee 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #b0e6fa;
+  border-radius: 3px;
+  border: none;
+}
+.cancelDialogBtn {
+  top: 572px;
+  left: 966px;
+  width: 109px;
+  height: 35px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #63667a29;
+  border: 1px solid #63667a;
+  border-radius: 3px;
+}
+.dialogCloseBtn {
+  justify-content: end;
+  margin-left: 361px;
+  background-color: white;
+  border: none;
+  margin-top: 19px;
+}
+.dialogBox {
+  display: flex;
+  justify-content: center;
+}
+.dialogContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-top: 18px;
+}
+.dialogBtns {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 13px;
+}
+.dialogSubtitle {
+  width: 280px;
+  text-align: center;
 }

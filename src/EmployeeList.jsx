@@ -4,25 +4,35 @@ import "./styles/createEmpStyle.css";
 import { useNavigate } from "react-router-dom";
 import EmpRow from "./components/EmpRow";
 import CreateEmployee from "./CreateEmployee";
+import Dialog from "./components/Dialog";
 import {
   useGetEmployeeByIdQuery,
   useGetEmployeeListQuery,
   useUpdateEmployeeMutation,
 } from "./services/empoyee";
 import { useDeleteEmployeeMutation } from "./services/empoyee";
+import { useState } from "react";
 
 const Employeelist = () => {
   const navigate = useNavigate();
   const { data, error, isLoading } = useGetEmployeeListQuery();
   const [deletePost, { isLoading: isDeleting }] = useDeleteEmployeeMutation();
-  // const [updatePost, { isLoading: isUpdating }] = useUpdateEmployeeMutation()
+  const [showPopup, setShowPopup] = useState(false);
+  const [empDeleteId, setEmpDeleteId] = useState("");
 
   const empList = data;
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
-  // console.log(empList);
+  const onDeleteHandler = (id) => {
+    setShowPopup(true);
+    setEmpDeleteId(id);
+  };
+  const onPopupClose = () => {
+    setShowPopup(false);
+  };
+
   return (
     <>
       <LeftNav />
@@ -37,23 +47,24 @@ const Employeelist = () => {
             <div className="blueRound">
               <img className="plusPng" src={require("./assets/plus.png")} />
             </div>
-            <h3> Create Employee</h3>
+            <div className="btnText"> Create Employee</div>
           </button>
         </div>
       </div>
       <div>
         <div className="empTableHeading flexRow">
-          <div>Employee Name</div>
-          <div>Employee ID</div>
-          <div>Joining Date</div>
-          <div>Role</div>
-          <div>Status</div>
-          <div>Experience</div>
-          <div>Active</div>
+          <div className="columnSize">Employee Name</div>
+          <div className="columnSize">Employee ID</div>
+          <div className="columnSize">Joining Date</div>
+          <div className="columnSize">Role</div>
+          <div className="columnSize">Status</div>
+          <div className="columnSize">Experience</div>
+          <div className="columnSize">Active</div>
         </div>
         <div>
           {empList?.map((item) => (
             <EmpRow
+              key={item.id}
               empName={item.empName}
               empId={item.empId}
               empJoiningDate={item.empJoiningDate}
@@ -62,7 +73,7 @@ const Employeelist = () => {
               empExperience={item.empExperience}
               empAction={item.empAction}
               deleteOnClick={(event) => {
-                deletePost(item.empId);
+                onDeleteHandler(item.empId);
                 event.stopPropagation();
               }}
               editOnClick={(event) => {
@@ -76,7 +87,28 @@ const Employeelist = () => {
           ))}
         </div>
       </div>
-      <div></div>
+      {showPopup && (
+        <div className="dialogBox">
+          {" "}
+          <Dialog
+            title="Are you sure ?"
+            subtitle="Do you really want to delete employee ?"
+            close={() => {
+              onPopupClose();
+              setEmpDeleteId("");
+            }}
+            cancel={() => {
+              onPopupClose();
+              setEmpDeleteId("");
+            }}
+            confirm={() => {
+              deletePost(empDeleteId);
+              setEmpDeleteId("");
+              onPopupClose();
+            }}
+          />
+        </div>
+      )}
     </>
   );
 };

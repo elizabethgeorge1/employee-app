@@ -1,5 +1,3 @@
-// react component for input field
-// import '../styles/styles.css';
 const InputField = ({
   label,
   type,

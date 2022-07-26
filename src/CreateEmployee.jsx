@@ -52,14 +52,7 @@ const CreateEmployee = ({ isdetailsPage }) => {
       placeholder: "Upload file",
     },
   ];
-  // const [empName,setEmpName]= useState("");
-  // const [empId,setEmpId]= useState("");
-  // const [empJoiningDate,setEmpJoining]= useState("");
-  // const [empExperience,setEmpExperience]= useState("");
-  // const [empAddress,setEmpAddress]= useState("");
-  // const [empUpload,setUpload]= useState("");
-  // const [empStatus,setEmpStatus]= useState("");
-  // const [empRole,setEmpRole]= useState("");
+
   const [empDetails, setEmpDetails] = useState({
     empName: "",
     empId: "",
@@ -143,8 +136,15 @@ const CreateEmployee = ({ isdetailsPage }) => {
             <InputSelect
               label="Status:"
               options={[
-                { key: "Single", label: "Single" },
-                { key: "Married", label: "Married" },
+                {
+                  key: "Choose",
+                  label: "Choose Status",
+                  selected: "true",
+                  disabled: "disabled",
+                },
+                { key: "Active", label: "Active" },
+                { key: "Inactive", label: "Inactive" },
+                { key: "Probation", label: "Probation" },
               ]}
               onchange={(text) => update("empStatus", text)}
               value={empDetails.empStatus}
@@ -153,6 +153,12 @@ const CreateEmployee = ({ isdetailsPage }) => {
             <InputSelect
               label="Role:"
               options={[
+                {
+                  key: "Choose",
+                  label: "Choose Role",
+                  selected: "true",
+                  disabled: "disabled",
+                },
                 { key: "Dev", label: "Developer" },
                 { key: "QA", label: "QA" },
               ]}
