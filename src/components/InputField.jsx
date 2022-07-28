@@ -5,6 +5,7 @@ const InputField = ({
   onchange,
   value,
   shouldDisable,
+  required
 }) => {
   return (
     <div>
@@ -15,6 +16,7 @@ const InputField = ({
         placeholder={placeholder}
         onChange={(event) => onchange(event.target.value)}
         disabled={shouldDisable}
+        required={required}
       />
     </div>
   );

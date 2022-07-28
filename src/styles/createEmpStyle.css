@@ -34,6 +34,9 @@ aside div {
 }
 .leftNavBtn div {
   margin: auto;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .createEmp h1 {

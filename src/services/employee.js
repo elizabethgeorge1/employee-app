@@ -22,7 +22,11 @@ export const employeeApi = createApi({
       invalidatesTags: ["Post"],
     }),
     getEmployeeById: builder.query({
-      query: (id) => `employee/${id}`,
+      query: (id) => ({
+        url: `employee/${id}`,
+        method: "GET",
+      }),
+      providesTags: ["Post"],
     }),
     deleteEmployee: builder.mutation({
       query: (id) => ({

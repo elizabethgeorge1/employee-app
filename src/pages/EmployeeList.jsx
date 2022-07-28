@@ -1,17 +1,14 @@
-import LeftNav from "./components/LeftNav";
-import "./styles/empListStyle.css";
-import "./styles/createEmpStyle.css";
+import LeftNav from "../components/LeftNav";
+import "../styles/empListStyle.css";
+import "../styles/createEmpStyle.css";
 import { useNavigate } from "react-router-dom";
-import EmpRow from "./components/EmpRow";
+import EmpRow from "../components/EmpRow";
 import CreateEmployee from "./CreateEmployee";
-import Dialog from "./components/Dialog";
-import {
-  useGetEmployeeByIdQuery,
-  useGetEmployeeListQuery,
-  useUpdateEmployeeMutation,
-} from "./services/empoyee";
-import { useDeleteEmployeeMutation } from "./services/empoyee";
+import Dialog from "../components/Dialog";
+import { useGetEmployeeListQuery } from "../services/employee";
+import { useDeleteEmployeeMutation } from "../services/employee";
 import { useState } from "react";
+
 
 const Employeelist = () => {
   const navigate = useNavigate();
@@ -45,7 +42,7 @@ const Employeelist = () => {
             onClick={() => navigate("/create")}
           >
             <div className="blueRound">
-              <img className="plusPng" src={require("./assets/plus.png")} />
+              <img className="plusPng" src={require("../assets/plus.png")} />
             </div>
             <div className="btnText"> Create Employee</div>
           </button>
@@ -64,7 +61,7 @@ const Employeelist = () => {
         <div>
           {empList?.map((item) => (
             <EmpRow
-              key={item.id}
+              key={item.empId}
               empName={item.empName}
               empId={item.empId}
               empJoiningDate={item.empJoiningDate}
@@ -77,6 +74,7 @@ const Employeelist = () => {
                 event.stopPropagation();
               }}
               editOnClick={(event) => {
+                
                 navigate(`/edit/${item.empId}`);
                 event.stopPropagation();
               }}

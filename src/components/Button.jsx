@@ -1,8 +1,8 @@
 const Button = (props) => {
-  const { label, handleClick, className } = props;
+  const { label, handleClick, className, type } = props;
 
   return (
-    <button onClick={(e) => handleClick(e)} className={className}>
+    <button onClick={(e) => handleClick(e)} className={className} type={type}>
       {label}
     </button>
   );

@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import counterReducer from '../features/counter/counterSlice'
 import { setupListeners } from '@reduxjs/toolkit/query'
 import { pokemonApi } from '../services/pokemon'
-import { employeeApi } from '../services/empoyee'
+import { employeeApi } from '../services/employee'
 
 // export default configureStore({
 //   reducer: {

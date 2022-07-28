@@ -1,4 +1,4 @@
-const InputSelect = ({ label, options, onchange, shouldDisable }) => {
+const InputSelect = ({ label, options, onchange, shouldDisable, value }) => {
   return (
     <div>
       <label>{label}</label>
@@ -6,6 +6,7 @@ const InputSelect = ({ label, options, onchange, shouldDisable }) => {
         name={label}
         onChange={(event) => onchange(event.target.value)}
         disabled={shouldDisable}
+        value={value?value:undefined}
       >
         {options.map((item) => (
           <option
